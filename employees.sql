@@ -11,9 +11,6 @@ DROP TABLE IF EXISTS dept_emp,
                      employees, 
                      departments;
 
-/*!50503 set default_storage_engine = InnoDB */;
-/*!50503 select CONCAT('storage engine: ', @@default_storage_engine) as INFO */;
-
 CREATE TABLE employees (
     emp_no      INT             NOT NULL,
     birth_date  DATE            NOT NULL,
@@ -82,8 +79,6 @@ CREATE OR REPLACE VIEW current_dept_emp AS
     FROM dept_emp d
         INNER JOIN dept_emp_latest_date l
         ON d.emp_no=l.emp_no AND d.from_date=l.from_date AND l.to_date = d.to_date;
-
---flush /*!50503 binary */ logs;
 
 SELECT 'LOADING departments' as 'INFO';
 source load_departments.dump ;
